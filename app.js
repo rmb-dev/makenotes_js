@@ -16,8 +16,8 @@ function createTodoItem(title) {
   editInput.className = 'edit';
 
   const deleteButton = document.createElement('button');
-  editButton.innerText = 'Delete';
-  editButton.className = 'delete';
+  deleteButton.innerText = 'Delete';
+  deleteButton.className = 'delete';
 
   const listItem = document.createElement('li');
   listItem.className = 'todo-item';
@@ -26,17 +26,29 @@ function createTodoItem(title) {
   listItem.appendChild(editInput);
   listItem.appendChild(editButton);
   listItem.appendChild(deleteButton);
+  // console.log(listItem);
+  bindEvents(listItem);
 
   return listItem;
 }
 
+function bindEvents(todoItem) {
+  const checkbox = todoItem.querySelector('checkbox');
+  const editButton = todoItem.querySelector('button.edit');
+  const delete Button = todoItem.querySelector('button.delete');
 
+  checkbox.addEventListenere('change', toggleTodoItem);
+  editButton.addEventListener('click', editTodoItem);
+  deleteButton.addEventListener('click', deleteTodoItem);
 
+}
 
 function addTodoItem(event) {
   event.preventDefault();
   if (addInput.value === '') return alert('Need to inpunt name of the task');
   const listItem = createTodoItem(addInput.value);
+  todoList.appendChild(todoItem);
+  addInput.value = '';
 }
 
 function deleteTodoItem() {
@@ -44,11 +56,38 @@ function deleteTodoItem() {
   constlistItem = this.parentNode;
   todoList.removeChild(listItem);
 }
+function toggleTodoItem() {
+  const listItem = this.parentNode;
+  listItem.className.toggle('completed');
+
+}
+
+function editTodoItem() {
+  const listItem = this.parentNode;
+  const title =listItem.querySelector('title');
+  const editInput = listItem.querySelectorconst listItem = this.parentNode;('.')
+  const isEditing = listItem.classList.contains('editing');
+
+  if (isEditing) {
+    title.innerText = editInput.value;
+    this.innerText = 'Change';
+  }else {
+    editInput.value = title.innerText;
+    this.innerText = 'Save';
+  }
+  listItem.classList.toggle('editing');
+}
+
+function deleteTodoItem() {
+  const listItem = this.parent.Node;
+  todoList.removeChild(listItem);
+}
+
 
 const todoForm = document.getElementById('todo-form');
 const addInput = document.getElementById('add-input');
 const todoList = document.getElementById('todo-list');
-const todoItems = document.getElementById('todo-form');
+const todoItems = document.getSelectorAll('todo-item');
 
 function main() {
   todoForm.addEventListener('submit', addTodoItem);
