@@ -1,5 +1,24 @@
+function createElement(tag, props, ... children) {
+  const element = document.createElement(tag);
+
+
+  Object.keys(props).forEach(key => element[key] = props[key]);
+  // for (let prop in props){
+  //  element[prop] = props[prop]; // element.type = props.type;
+  }
+
+}
+
+
 function createTodoItem(title) {
-  const checkbox = document.createElement('input');
+  const checkbox = document.createElement('input', type: 'checkbox', className: 'checkbox'});
+  const label = document.createElement('lable', {className: 'title'}, title);
+  const editInput = document.createElement('input', {type: 'text', className: 'textfield'});
+  const editButton = document.createElement('button', {className: 'edit'}, 'Change');
+  const deleteButton = document.createElement('button', { className: 'delete'}, 'Delete');
+  const listItem = document.createElement('li', {className: 'todo-item'}, );
+
+
   checkbox.type = 'Checkbox';
   checkbox.className = 'checkbox';
 
@@ -93,3 +112,5 @@ function main() {
   todoForm.addEventListener('submit', addTodoItem);
   todoItems.forEach(item => bindEvents(items));
 }
+
+main();
