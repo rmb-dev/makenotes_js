@@ -1,10 +1,10 @@
 function createTodoItem(title) {
   const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
+  checkbox.type = 'Checkbox';
   checkbox.className = 'checkbox';
 
   const label = document.createElement('lable');
-  lable.innerText = title;
+  lable.innerText = 'Title';
   lable.className = 'title';
 
   const editInput = document.createElement('input');
@@ -18,6 +18,16 @@ function createTodoItem(title) {
   const deleteButton = document.createElement('button');
   editButton.innerText = 'Delete';
   editButton.className = 'delete';
+
+  const listItem = document.createElement('li');
+  listItem.className = 'todo-item';
+  listItem.appendChild(checkbox);
+  listItem.appendChild(label);
+  listItem.appendChild(editInput);
+  listItem.appendChild(editButton);
+  listItem.appendChild(deleteButton);
+
+  return listItem;
 }
 
 
